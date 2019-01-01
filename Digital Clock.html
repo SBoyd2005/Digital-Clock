@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>JS - Digital Clock</title>
+    <style type="text/css">
+        body {
+            background: #ff6a00;
+        }
+        .clock{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            color: #000000;
+            font-size: 60px;
+            border: 1px solid #000000;
+            padding: 0px 5px 0px 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="MyClockDisplay" class="clock"></div>
+    <script type="text/javascript">
+        function showTime() {
+            var date = new Date();
+            var h = date.getHours(); //0-23
+            var m = date.getMinutes(); //0-59
+            var s = date.getSeconds(); //0-59
+            var session = "AM";
+
+            if (h == 0) {
+                h = 12;
+            }
+
+            if (h > 12){
+                h = h - 12;
+                session = "PM";
+            }
+
+            h = (h < 10) ? "0" + h : h;
+            m = (m < 10) ? "0" + m : m;
+            s = (s < 10) ? "0" + s : s;
+            
+            var time = h + ":" + m + ":" + s + " " + session;
+            document.getElementById("MyClockDisplay").innerText = time;
+            document.getElementById("MyClockDisplay").textContent = time;
+
+            setTimeout(showTime, 1000);
+        }
+
+        showTime();
+
+    </script>
+</body>
+</html>
